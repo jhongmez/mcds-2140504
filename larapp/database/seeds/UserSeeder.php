@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $usr = new User;
         $usr->fullname      = 'Homero Simpson';
         $usr->email         = 'Homero@gmail.com';
-        $usr->phone         = 3216549898;
+        $usr->phone         = '3216549898';
         $usr->birthdate     = '1968-03-01';
         $usr->gender        = 'Male';
         $usr->address       = 'Avd Siempre viva';
@@ -31,6 +31,6 @@ class UserSeeder extends Seeder
 
 
         //Factory
-        factory(User::class, 1000)->create();
+        factory(User::class, 10)->create();
     }
 }
