@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
 
     $gender = $faker->randomElement(['male', 'female']);
+    $photo = $faker->image('public/imgs', 140, 140, 'people');
 
     return [
         'fullname'          => $faker->name($gender),
@@ -28,6 +29,7 @@ $factory->define(User::class, function (Faker $faker) {
         'gender'            => $gender,
         'address'           => $faker->streetAddress,
         'email'             => $faker->unique()->safeEmail,
+        'photo'             => substr($photo, 7),
         'email_verified_at' => now(),
         'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token'    => Str::random(10),
