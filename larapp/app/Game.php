@@ -20,4 +20,19 @@ class Game extends Model
         'slider',
         'price'
     ];
+
+    // !Relacion de un usuario puede tener muchos juegos
+    public function user() {
+        
+        return $this->belongsTo('App\User');
+
+    }
+
+    // !Relacion de una categoria puede tener muchos juego
+    public function category() {
+        
+        return $this->belongsTo('App\Category');
+
+    }
+
 }
