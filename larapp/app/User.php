@@ -52,4 +52,44 @@ class User extends Authenticatable
 
     }
 
+    // Usando tinker
+    // Entrar a tinker -> php artisan tinker
+
+    // Crear un usuario con tinker
+    /*
+
+        $user = new User;
+        $user->fullname = 'Pedro';
+        $user->save();
+     
+    */
+
+    //Buscar con tinker
+    /*
+        $user->all() Buscar todo
+        $user = User::find(12) Buscar un usuario
+        $user = User::all()->max('birthdate')
+        $user = User::where('active', 1)->get(); Mostrar usuarios que tengan active 1
+        $user = User::where('active', 1)->find(12); Mostrar al usuario 12 que tenga active 1;
+        $user = User::where('role', 'Customer')->orderBy('birthdate','desc')->get();
+    */
+
+    //Modificar
+    // !Primero se debe encontrar y luego modificar
+    /*
+        $user = User::find(12);
+        $user->fullname = 'Pepe'
+        $user->address = 'Chao'
+        $user->save();
+    
+    */
+
+    //Eliminar
+    // !Primero se debe encontrar y luego eliminar
+    /*
+        $user = User::find(12);
+        $user->delete();
+    
+    */
+
 }
