@@ -39,3 +39,7 @@ Route::get('challenge', function () {
     }
     return view('challenge', ['rs' => $rs]);
 });
+
+Route::get('examples', function() {
+    return view('examples');
+});
