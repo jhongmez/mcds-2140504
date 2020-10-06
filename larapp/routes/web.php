@@ -43,3 +43,6 @@ Route::get('challenge', function () {
 Route::get('examples', function() {
     return view('examples');
 });
+
+// Middleware
+Route::get('locale/{locale}', 'LocaleController@index');
