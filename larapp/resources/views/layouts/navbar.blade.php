@@ -17,33 +17,37 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 <li class="nav-item">
-                    <a class="nav-link" href="">EN</a>
+                    <a class="nav-link" href="{{ url('locale/en') }}">EN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">ES</a>
+                    <a class="nav-link" href="{{ url('locale/es') }}">ES</a>
                 </li>
                 {{-- guest es un usuario no identificado --}}
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('general.link-login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">
+                            @lang('general.link-login')
+                        </a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('general.link-register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">
+                                @lang('general.link-register')
+                            </a>
                         </li>
                     @endif
                 @else
 
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->fullname }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                @lang('general.link-close')
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

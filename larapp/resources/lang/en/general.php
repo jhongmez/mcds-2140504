@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'link-login'    => 'Login',
-    'link-register' => 'Register',
+    'link-login'        => 'Login',
+    'link-register'     => 'Register',
+    'title-register'    => 'Register',
 
 ];
