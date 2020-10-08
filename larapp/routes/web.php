@@ -18,17 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('Helloworld', function() {
-    return "hola";
-});
 
-Route::get('users', function() {
-    dd(App\User::all());
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 
 Route::get('challenge', function () {
@@ -40,9 +33,12 @@ Route::get('challenge', function () {
     return view('challenge', ['rs' => $rs]);
 });
 
-Route::get('examples', function() {
-    return view('examples');
-});
+//Resources
+Route::resources([
+    'users'         => 'UserController',
+    // 'categories'    => 'CategoryController',
+    // 'games'         => 'GameController',
+]);
 
 // Middleware
 Route::get('locale/{locale}', 'LocaleController@index');
