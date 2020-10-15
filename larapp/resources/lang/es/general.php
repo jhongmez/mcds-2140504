@@ -33,6 +33,7 @@ return [
     'label-password'    => 'Contraseña',
     'label-confirm'     => 'Confimar contraseña',
     'label-remember'    => 'Recordarme',
+    'label-photo'       => 'Foto de perfil',
 
     //Select para formularios
     'select-value'      => 'Seleccione',

@@ -38,6 +38,10 @@
                             @endforeach
                     </tbody>
                 </table>
+                <!-- Para realizar la paginación usamos links() -->
+                <div class="d-flex justify-content-center">
+                    {{  $users->links() }}
+                </div>
             </div>
         </div>
     </div>
