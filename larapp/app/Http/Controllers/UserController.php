@@ -49,7 +49,29 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         // Para probar si se estan enviando los datos
-        dd($request->all());
+        //dd($request->all());
+        $user = new User;
+        $user->fullname     = $request->fullname;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->birthdate    = $request->birthdate;
+        $user->gender       = $request->gender;
+        $user->address      = $request->address;
+
+        // SI hay alguna imagen
+        if ($request->hasFile('photo')) {
+            $file = time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('imgs'), $file);
+            $user->photo = 'imgs/'.$file;
+        }
+
+        $user->password     = bcrypt($request->password);
+
+        // Guardar usuario y mostrar mensaje
+        if($user->save()) {
+            return redirect('users')->with('message', 'El usuario: '.$user->fullname.'fue adicionado con exito!');
+        }
+
     }
 
     /**
@@ -60,7 +82,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        //dd($user);
+        return view('users.show')->with('user', $user);
     }
 
     /**
