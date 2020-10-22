@@ -30,7 +30,7 @@
                                         <img src="{{ asset($user->photo) }}" alt="" width="35"> 
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <a href="" class="btn btn-primary btn-sm">Consultar</a>
+                                        <a href="{{ url('users/'.$user->id) }}" class="btn btn-primary btn-sm">Consultar</a>
                                         <a href="" class="btn btn-primary btn-sm ml-1 mr-1">Editar</a>
                                         <a href="" class="btn btn-danger btn-sm">Eliminar</a>
                                     </td>
