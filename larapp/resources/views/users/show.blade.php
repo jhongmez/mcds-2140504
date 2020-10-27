@@ -8,6 +8,26 @@
     <div class="col-md-10 offset-md-1">
         <h1>Consultar usuario</h1>
         <hr>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                  <a href="{{ url('home') }}">
+                      <i class="fa fa-clipboard-list"></i>  
+                      Escritorio
+                  </a>
+              </li>
+              <li class="breadcrumb-item">
+                  <a href="{{ route('users.index') }}">
+                      <i class="fa fa-users"></i>  
+                       Módulo Usuarios
+                  </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                  <i class="fa fa-pen"></i> 
+                  Consultar Usuario
+              </li>
+            </ol>
+        </nav>
         <table class="table table-striped table-hover">
             <tr>
                 <td colspan="2" class="text-center">
