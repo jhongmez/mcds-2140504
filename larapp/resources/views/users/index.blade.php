@@ -31,8 +31,12 @@
                                     </td>
                                     <td class="d-flex align-items-center">
                                         <a href="{{ url('users/'.$user->id) }}" class="btn btn-primary btn-sm">Consultar</a>
-                                        <a href="" class="btn btn-primary btn-sm ml-1 mr-1">Editar</a>
-                                        <a href="" class="btn btn-danger btn-sm">Eliminar</a>
+                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-primary btn-sm ml-1 mr-1">Editar</a>
+                                        <form action="{{ url('users/'.$user->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="button" class="btn btn-danger btn-delete btn-sm">Eliminar</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

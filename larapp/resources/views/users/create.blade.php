@@ -8,6 +8,26 @@
         <div class="col-md-6 offset-md-3">
             <h1>Creacion de usuario</h1>
             <hr>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                      <a href="{{ url('home') }}">
+                          <i class="fa fa-clipboard-list"></i>  
+                          Escritorio
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                      <a href="{{ route('users.index') }}">
+                          <i class="fa fa-users"></i>  
+                           Módulo Usuarios
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                      <i class="fa fa-pen"></i> 
+                      Crear Usuario
+                  </li>
+                </ol>
+            </nav>
             <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                 @csrf
 

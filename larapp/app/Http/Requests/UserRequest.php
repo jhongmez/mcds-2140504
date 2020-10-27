@@ -23,15 +23,41 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        if ($this->method() == 'PUT') {
+           
+            return [
+                'fullname'      => 'required',
+                'email'         => 'required|email|unique:users,email,'.$this->id,
+                'phone'         => 'required|numeric',
+                'birthdate'     => 'required|date',
+                'gender'        => 'required',
+                'address'       => 'required',
+                'photo'         => 'max:1000'
+            ];
+        } else {
+            return [
+                'fullname'      => 'required',
+                'email'         => 'required|email|unique:users',
+                'phone'         => 'required|numeric',
+                'birthdate'     => 'required|date',
+                'gender'        => 'required',
+                'address'       => 'required',
+                'photo'         => 'required|image|max:1000',
+                'password'      => 'required|min:6|confirmed'
+            ];
+        }
+    }
+
+    public function messages() {
         return [
-            'fullname'      => 'required',
-            'email'         => 'required|email|unique:users',
-            'phone'         => 'required|numeric',
-            'birthdate'     => 'required|date',
-            'gender'        => 'required',
-            'address'       => 'required',
-            'photo'         => 'required|image|max:1000',
-            'password'      => 'required|min:6|confirmed'
+            'fullname.required' => 'El campo ":attribute" es obligatorio.',
+            'email.required'    => 'El campo "Correo Electrónico" es obligatorio.'
+        ];
+    }
+
+    public function attributes() {
+        return [
+            'fullname' => 'Nombre Completo'
         ];
     }
 }
