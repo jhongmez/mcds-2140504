@@ -86,6 +86,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -95,9 +96,22 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         //
+        //dd($request->all());
+        $category->name         = $request->name;
+        $category->description  = $request->description;
+
+        if ($request->hasFile('photo')) {
+            $file = time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('imgs'), $file);
+            $category->photo = 'imgs/'.$file;
+        }
+
+        if($category->save()) {
+            return redirect('categories')->with('message', 'La Categoria: '.$category->name.' fue Modificada con Exito!');
+        }
     }
 
     /**
@@ -109,5 +123,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        if($category->delete()) {
+            return redirect('categories')->with('message', 'La Categoria: '.$category->name.' fue Eliminada con Exito!');
+        }
     }
 }

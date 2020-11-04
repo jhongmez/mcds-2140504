@@ -28,8 +28,12 @@
                             </td>
                             <td class="d-flex align-items-center">
                                 <a href="{{ url('categories/'.$category->id) }}" class="btn btn-sm btn-primary">Consultar</a>
-                                <a href="" class="btn btn-sm btn-primary ml-1 mr-1">Editar</a>
-                                <a href="" class="btn btn-sm btn-danger">Eliminar</a>
+                                <a href="{{ url('categories/'.$category->id.'/edit') }}" class="btn btn-sm btn-primary ml-1 mr-1">Editar</a>
+                                <form action="{{ url('categories/'.$category->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-danger btn-delete btn-sm">Eliminar</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
