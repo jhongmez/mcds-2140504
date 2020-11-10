@@ -27,6 +27,7 @@ class GameRequest extends FormRequest
            
             return [
                 'name'          => 'required|unique:games,name,'.$this->id,
+                'description'   => 'required',
                 'image'         => 'max:1000',
                 'user_id'       => 'required',
                 'category_id'   => 'required',
@@ -38,7 +39,7 @@ class GameRequest extends FormRequest
             return [
                 'name'          => 'required|unique:games',
                 'description'   => 'required',
-                'image'         => 'required|max:1000',
+                'image'         => 'required|image|max:1000',
                 'user_id'       => 'required',
                 'category_id'   => 'required',
                 'slider'        => 'required',
