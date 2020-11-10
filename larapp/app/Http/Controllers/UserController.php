@@ -139,4 +139,11 @@ class UserController extends Controller
             return redirect('users')->with('message', 'El Usuario: '.$user->fullname.' fue Eliminado con Exito!');
         } 
     }
+
+    public function pdf() {
+        $users = User::all();
+        //dd($users);
+        $pdf = \PDF::loadView('users.pdf', compact('users'));
+        return $pdf->download('allusers.pdf');
+    }
 }

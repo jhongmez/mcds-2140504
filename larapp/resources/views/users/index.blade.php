@@ -9,6 +9,7 @@
             <h1>Lista de Usuarios</h1>
             <hr>
             <a href="{{ url('users/create') }}" class="btn btn-success"> Adicionar </a>
+            <a href="{{ url('generate/pdf/users') }}" class="btn btn-warning"> Exportar PDF </a>
             <div class="table-responsive">
                 <table class="table table-striped table-hover mt-4">
                     <thead>
