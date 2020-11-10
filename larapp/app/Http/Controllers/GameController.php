@@ -76,7 +76,7 @@ class GameController extends Controller
     public function show(Game $game)
     {
         //
-        $users   = User::all();
+        $users  = User::all();
         $cats   = Category::all();
         return view('games.show')->with('game', $game)->with('users', $users)->with('cats', $cats);
     }
@@ -89,7 +89,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        //dd($game->all());
         $users  = User::where('role', 'Admin')->get();
         $cats   = Category::all();
         return view('games.edit')->with('game', $game)->with('users', $users)->with('cats', $cats);
@@ -102,9 +102,27 @@ class GameController extends Controller
      * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(GameRequest $request, Game $game)
     {
-        //
+        //dd($request->all());
+        $game->name         = $request->name;
+        $game->description  = $request->description;
+        $game->user_id      = $request->user_id;
+        $game->category_id  = $request->category_id;
+        $game->slider       = $request->slider;
+        $game->price        = $request->price;
+
+        // SI hay alguna imagen el nombre image cambia dependiendo el nombre en la tabla
+        if ($request->hasFile('image')) {
+            $file = time().'.'.$request->image->extension();
+            $request->image->move(public_path('imgs'), $file);
+            $game->image = 'imgs/'.$file;
+        }
+
+        // Guardar usuario y mostrar mensaje
+        if($game->save()) {
+            return redirect('games')->with('message', 'El juego: '.$game->name.' fue modificado con exito!');
+        }
     }
 
     /**
@@ -116,5 +134,8 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         //
+        if($game->delete()) {
+            return redirect('games')->with('message', 'El juego: '.$game->name.' fue Eliminado con Exito!');
+        }
     }
 }

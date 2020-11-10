@@ -35,7 +35,7 @@
                                 <a href="{{ url('games/'.$game->id.'/edit') }}" class="btn btn-sm btn-primary ml-1 mr-1">Editar</a>
                                 <form action="{{ url('games/'.$game->id) }}" method="POST" class="d-inline">
                                     @csrf
-                                    @method('delete')
+                                    @method('DELETE')
                                     <button type="button" class="btn btn-danger btn-delete btn-sm">Eliminar</button>
                                 </form>
                             </td>
