@@ -60,13 +60,23 @@
                 });
 
 
-                /* - - -*/
+            /* - - -*/
             $('#photo').change(function(event) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
                     $('#preview').attr('src', event.target.result);
                 }
                 reader.readAsDataURL(this.files[0]);
+            });
+
+
+            /* * */
+
+            $('.btn-excel').click(function(event) {
+                $('#file').click();
+            });
+            $('#file').change(function(event) {
+                $(this).parent().submit();
             });
         });
     </script>

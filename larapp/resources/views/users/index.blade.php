@@ -8,8 +8,19 @@
         <div class="col-md-10 offset-md-1">
             <h1>Lista de Usuarios</h1>
             <hr>
-            <a href="{{ url('users/create') }}" class="btn btn-success"> Adicionar </a>
+            <a href="{{ url('users/create') }}" class="btn btn-primary"> Adicionar </a>
+
+            {{-- Importar excel --}}
+            <form action="{{ url('import/excel/users') }}" method="POST" enctype="multipart/form-data" class="d-inline">
+				@csrf
+				<input type="file" class="d-none" id="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+				<button type="button" class="btn btn-success btn-excel mr-3">
+					Importar Usuarios
+				</button>
+			</form>
+
             <a href="{{ url('generate/pdf/users') }}" class="btn btn-warning"> Exportar PDF </a>
+            <a href="{{ url('generate/excel/users') }}" class="btn btn-warning"> Exportar Excel </a>
             <div class="table-responsive">
                 <table class="table table-striped table-hover mt-4">
                     <thead>
