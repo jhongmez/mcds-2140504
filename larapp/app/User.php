@@ -52,6 +52,16 @@ class User extends Authenticatable
 
     }
 
+    public function scopeNames($users, $q) {
+        
+        if (trim($q)) {
+            $users->where('fullname','LIKE',"%$q%")
+                  ->orWhere('email','LIKE',"%$q%");
+        }
+
+    }
+
+
     // Usando tinker
     // Entrar a tinker -> php artisan tinker
 

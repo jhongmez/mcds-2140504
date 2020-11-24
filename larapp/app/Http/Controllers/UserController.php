@@ -6,6 +6,11 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 
+// Exportar Excel
+use App\Exports\UserExport;
+// Importar Excel
+use App\Imports\UserImport;
+
 class UserController extends Controller
 {
     /**
@@ -145,5 +150,21 @@ class UserController extends Controller
         //dd($users);
         $pdf = \PDF::loadView('users.pdf', compact('users'));
         return $pdf->download('allusers.pdf');
+    }
+
+    public function excel() {
+        return \Excel::download(new UserExport, 'allusers.xlsx');
+    }
+
+    // Colocamos el request por que sera el envio del form
+    public function importExcel(Request $request) {
+        $file = $request->file('file');
+        \Excel::import(new UserImport, $file);
+        return redirect()->back()->with('message', 'Usuarios importados con éxito!');
+    }
+
+    public function search(Request $request) {
+        $users = User::names($request->q)->orderBy('id','ASC')->paginate(20);
+        return view('users.search')->with('users', $users);
     }
 }
