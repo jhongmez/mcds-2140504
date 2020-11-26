@@ -21,6 +21,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Grupo middleware para Admin
+Route::group(['middleware' => 'admin'], function() {
+     Route::resources([
+        'users'         => 'UserController',
+        'categories'    => 'CategoryController',
+        'games'         => 'GameController',
+    ]); 
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -33,12 +42,6 @@ Route::get('challenge', function () {
     return view('challenge', ['rs' => $rs]);
 });
 
-//Resources
-Route::resources([
-    'users'         => 'UserController',
-    'categories'    => 'CategoryController',
-    'games'         => 'GameController',
-]);
 
 // Exports PDF
 Route::get('generate/pdf/users', 'UserController@pdf');
