@@ -7,9 +7,10 @@
 
 <div class="row">
     <div class="col-md-10 offset-md-1">
-        <h1>Lista de Categorias</h1>
+        <h1>Lista de Juegos</h1>
         <hr>
         <a href="{{ url('games/create') }}" class="btn btn-success"> Adicionar </a>
+        <a href="{{ url('generate/pdf/games') }}" class="btn btn-warning"> Exportar PDF </a>
         <div class="table-responsive">
             <table class="table table-striped table-hover mt-4">
                 <thead>

@@ -45,6 +45,7 @@ Route::get('challenge', function () {
 
 // Exports PDF
 Route::get('generate/pdf/users', 'UserController@pdf');
+Route::get('generate/pdf/games', 'GameController@pdf');
 
 // Exports EXCEL
 Route::get('generate/excel/users', 'UserController@excel');

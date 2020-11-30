@@ -138,4 +138,12 @@ class GameController extends Controller
             return redirect('games')->with('message', 'El juego: '.$game->name.' fue Eliminado con Exito!');
         }
     }
+
+    public function pdf() {
+        $games = Game::all();
+        //dd($games);
+        $pdf = \PDF::loadView('games.pdf', compact('games'));
+        return $pdf->download('allgames.pdf');
+    }
+
 }
