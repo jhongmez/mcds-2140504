@@ -45,15 +45,19 @@ Route::get('challenge', function () {
 
 // Exports PDF
 Route::get('generate/pdf/users', 'UserController@pdf');
+Route::get('generate/pdf/games', 'GameController@pdf');
 
 // Exports EXCEL
 Route::get('generate/excel/users', 'UserController@excel');
+Route::get('generate/excel/games', 'GameController@excel');
 
 // Import EXCEL
 Route::post('import/excel/users', 'UserController@importExcel');
+Route::post('import/excel/games', 'GameController@importExcel');
 
 // Search scope
 Route::post('users/search', 'UserController@search');
+Route::post('games/search', 'GameController@search');
 
 // Middleware
 Route::get('locale/{locale}', 'LocaleController@index');

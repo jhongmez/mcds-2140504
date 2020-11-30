@@ -35,4 +35,12 @@ class Game extends Model
 
     }
 
+    public function scopeNames($games, $q) {
+
+        if (trim($q)) {
+            $games->where('name','LIKE',"%$q%");
+        }
+
+    }
+
 }

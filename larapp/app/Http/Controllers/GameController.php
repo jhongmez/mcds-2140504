@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Game;
 use App\User;
 use App\Category;
+
+// Exportar Excel
+use App\Exports\GameExport;
+// Importar Excel
+use App\Imports\GameImport;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
 
@@ -138,4 +144,30 @@ class GameController extends Controller
             return redirect('games')->with('message', 'El juego: '.$game->name.' fue Eliminado con Exito!');
         }
     }
+
+    // Exportar PDF
+    public function pdf() {
+        $games = Game::all();
+        //dd($games);
+        $pdf = \PDF::loadView('games.pdf', compact('games'));
+        return $pdf->download('allgames.pdf');
+    }
+
+    // Exportar Excel
+    public function excel() {
+        return \Excel::download(new GameExport, 'allgames.xlsx');
+    }
+
+    // Colocamos el request por que sera el envio del form
+    public function importExcel(Request $request) {
+        $file = $request->file('file');
+        \Excel::import(new GameImport, $file);
+        return redirect()->back()->with('message', 'Juegos importados con éxito!');
+    }
+
+    public function search(Request $request) {
+        $games = Game::names($request->q)->orderBy('id','ASC')->paginate(20);
+        return view('games.search')->with('games', $games);
+    }
+
 }
