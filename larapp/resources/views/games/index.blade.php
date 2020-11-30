@@ -11,6 +11,7 @@
         <hr>
         <a href="{{ url('games/create') }}" class="btn btn-success"> Adicionar </a>
         <a href="{{ url('generate/pdf/games') }}" class="btn btn-warning"> Exportar PDF </a>
+        <a href="{{ url('generate/excel/games') }}" class="btn btn-warning"> Exportar Excel </a>
         <div class="table-responsive">
             <table class="table table-striped table-hover mt-4">
                 <thead>

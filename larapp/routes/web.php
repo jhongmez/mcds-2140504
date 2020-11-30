@@ -49,6 +49,7 @@ Route::get('generate/pdf/games', 'GameController@pdf');
 
 // Exports EXCEL
 Route::get('generate/excel/users', 'UserController@excel');
+Route::get('generate/excel/games', 'GameController@excel');
 
 // Import EXCEL
 Route::post('import/excel/users', 'UserController@importExcel');

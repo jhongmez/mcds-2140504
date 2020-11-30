@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Game;
 use App\User;
 use App\Category;
+
+// Exportar Excel
+use App\Exports\GameExport;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
 
@@ -139,11 +143,17 @@ class GameController extends Controller
         }
     }
 
+    // Exportar PDF
     public function pdf() {
         $games = Game::all();
         //dd($games);
         $pdf = \PDF::loadView('games.pdf', compact('games'));
         return $pdf->download('allgames.pdf');
+    }
+
+    // Exportar Excel
+    public function excel() {
+        return \Excel::download(new GameExport, 'allgames.xlsx');
     }
 
 }
