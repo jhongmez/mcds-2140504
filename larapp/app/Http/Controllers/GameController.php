@@ -8,6 +8,8 @@ use App\Category;
 
 // Exportar Excel
 use App\Exports\GameExport;
+// Importar Excel
+use App\Imports\GameImport;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
@@ -154,6 +156,13 @@ class GameController extends Controller
     // Exportar Excel
     public function excel() {
         return \Excel::download(new GameExport, 'allgames.xlsx');
+    }
+
+    // Colocamos el request por que sera el envio del form
+    public function importExcel(Request $request) {
+        $file = $request->file('file');
+        \Excel::import(new GameImport, $file);
+        return redirect()->back()->with('message', 'Juegos importados con éxito!');
     }
 
 }

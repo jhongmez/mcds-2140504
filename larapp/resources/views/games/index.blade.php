@@ -10,6 +10,14 @@
         <h1>Lista de Juegos</h1>
         <hr>
         <a href="{{ url('games/create') }}" class="btn btn-success"> Adicionar </a>
+         {{-- Importar excel --}}
+        <form action="{{ url('import/excel/games') }}" method="POST" enctype="multipart/form-data" class="d-inline">
+            @csrf
+            <input type="file" class="d-none" id="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+            <button type="button" class="btn btn-success btn-excel mr-3">
+                Importar Juegos
+            </button>
+        </form>
         <a href="{{ url('generate/pdf/games') }}" class="btn btn-warning"> Exportar PDF </a>
         <a href="{{ url('generate/excel/games') }}" class="btn btn-warning"> Exportar Excel </a>
         <div class="table-responsive">

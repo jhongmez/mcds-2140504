@@ -53,6 +53,7 @@ Route::get('generate/excel/games', 'GameController@excel');
 
 // Import EXCEL
 Route::post('import/excel/users', 'UserController@importExcel');
+Route::post('import/excel/games', 'GameController@importExcel');
 
 // Search scope
 Route::post('users/search', 'UserController@search');
