@@ -20,6 +20,13 @@
         </form>
         <a href="{{ url('generate/pdf/games') }}" class="btn btn-warning"> Exportar PDF </a>
         <a href="{{ url('generate/excel/games') }}" class="btn btn-warning"> Exportar Excel </a>
+        <input type="hidden" id="tmodel" value="games">
+        <input type="search" id="qsearch" name="qsearch" class="form-search" autocomplete="off" placeholder="Buscar">
+        <br>
+        <div class="loader d-none text-center mt-5">
+            <img src="{{ asset('imgs/loader.gif')}}" width="100px">
+        </div>
+        <br><br>
         <div class="table-responsive">
             <table class="table table-striped table-hover mt-4">
                 <thead>
@@ -30,7 +37,7 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="content">
                     @foreach($games as $game)
                         <tr>
                             <td>{{ $game->name }}</td>

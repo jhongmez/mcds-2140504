@@ -57,6 +57,7 @@ Route::post('import/excel/games', 'GameController@importExcel');
 
 // Search scope
 Route::post('users/search', 'UserController@search');
+Route::post('games/search', 'GameController@search');
 
 // Middleware
 Route::get('locale/{locale}', 'LocaleController@index');

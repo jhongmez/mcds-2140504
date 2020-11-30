@@ -165,4 +165,9 @@ class GameController extends Controller
         return redirect()->back()->with('message', 'Juegos importados con éxito!');
     }
 
+    public function search(Request $request) {
+        $games = Game::names($request->q)->orderBy('id','ASC')->paginate(20);
+        return view('games.search')->with('games', $games);
+    }
+
 }
