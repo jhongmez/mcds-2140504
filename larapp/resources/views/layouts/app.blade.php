@@ -16,6 +16,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
 </head>
 <body>
     {{-- Barra de navegacion --}}
@@ -28,6 +30,7 @@
      <!-- Scripts -->
      <script src="{{ asset('js/app.js') }}"></script>
      <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -105,6 +108,23 @@
                         $('.table').fadeIn('slow');
                     });
                 }, 2000);
+            });
+
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:3
+                    }
+                }
             });
 
         });
